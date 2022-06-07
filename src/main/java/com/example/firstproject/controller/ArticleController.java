@@ -27,7 +27,6 @@ public class ArticleController {
 
         System.out.println(article.toString());
         // 2. Repository에게 Entity를 DB안에 저장하게 함
-
         Article saved = articleRepository.save(article);
         System.out.println(saved.toString());
         return "";
