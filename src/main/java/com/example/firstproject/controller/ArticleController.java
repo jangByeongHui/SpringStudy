@@ -99,5 +99,21 @@ public class ArticleController {
         return "redirect:/articles/"+artcleEntity.getId();
     }
 
+    @GetMapping("articles/{id}/delete")
+    public String delete(@PathVariable Long id){
+        log.info("삭제요청이 들어왔습니다.");
+
+        //1. 삭제 대상을 가져온다!
+        Article target = articleRepository.findById(id).orElse(null);
+        log.info(target.toString());
+        //2. 대상을 삭제한다.
+        if (target != null){
+            articleRepository.delete(target);
+        }
+
+        //3. 결과 페이지로 리다이렉트 한다.
+        return "redirect:/articles";
+    }
+
 
 }
