@@ -85,4 +85,37 @@ class ArticleServiceTest {
     }
 
 
+    @Test
+    @Transactional
+    void update_sucess() {
+        //예상
+        Long id = 1L;
+        String title = "Joker";
+        String content = "HaHaHa";
+        ArticleForm dto = new ArticleForm(id,title,content);
+        Article expected = new Article(id,title,content);
+
+        //실제
+        Article article = artcleServie.update(id,dto);
+
+        //비교
+        assertEquals(expected.toString(),article.toString());
+    }
+
+    @Test
+    @Transactional
+    void update_fail() {
+        //예상
+        Long id = -1L;
+        String title = "Joker";
+        String content = "HaHaHa";
+        ArticleForm dto = new ArticleForm(id,title,content);
+        Article expected = null;
+
+        //실제
+        Article article = artcleServie.update(id,dto);
+
+        //비교
+        assertEquals(expected,article);
+    }
 }
