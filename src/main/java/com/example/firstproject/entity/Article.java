@@ -5,12 +5,9 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 
-@Entity
+@Entity //테이블을 생성한다.
 @AllArgsConstructor
 @NoArgsConstructor
 @ToString
@@ -18,7 +15,7 @@ import javax.persistence.Id;
 public class Article {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY) //DB가 id를 자동 생성 어노테이션!
     private Long id;
 
     @Column
@@ -26,5 +23,14 @@ public class Article {
 
     @Column
     private String content;
+    public void patch(Article article){
+        if(article.title != null){
+            this.title = article.title;
+        }
+
+        if(article.content != null){
+            this.content = article.content;
+        }
+    }
 
 }
