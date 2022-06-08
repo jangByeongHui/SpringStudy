@@ -6,6 +6,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import javax.transaction.Transactional;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -52,6 +53,7 @@ class ArticleServiceTest {
     }
 
     @Test
+    @Transactional
     void create_sucess() {
         //예상
         String title = "K";
@@ -67,6 +69,7 @@ class ArticleServiceTest {
     }
 
     @Test
+    @Transactional
     void create_fail() {
         //예상
         String title = "K";
